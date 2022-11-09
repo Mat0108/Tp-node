@@ -2,17 +2,25 @@ const Post = require('../models/postModel');
 const textApiProvider = require("../providers/textApiProvider");
 
 exports.listAllPosts = (req, res) => {
-    Post.find({}, (error, posts) => {
-        if (error) {
-            res.status(500);
-            console.log(error);
-            res.json({ message: "Erreur serveur." });
-        }
-        else {
-            res.status(200);
-            res.json(posts);
-        }
-    })
+    let IsConnected = new Boolean(req.body.IsConnected);
+    console.log("STATUS : ",IsConnected);
+    if(IsConnected == true){
+        Post.find({}, (error, posts) => {
+            if (error) {
+                res.status(500);
+                console.log(error);
+                res.json({ message: "Erreur serveur." });
+            }
+            else {
+                res.status(200);
+                res.json(posts);
+            }
+        })
+    }else{
+        res.status(500);
+        res.json({ message: "Vous n'etes pas connecté" });
+   
+    }
 }
 
 exports.createAPost = (req, res) => {

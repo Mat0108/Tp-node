@@ -1,9 +1,12 @@
 const User = require('../models/userModel');
 const jwt = require("jsonwebtoken");
+const bcrypt = require('bcrypt');
 
 exports.userRegister = (req, res) => {
     let newUser = new User(req.body);
 
+    const saltRounds = 10;
+    newUser.password = bcrypt.hashSync(newUser.password, saltRounds);
     newUser.save((error, user) => {
         if (error) {
             res.status(401);
@@ -30,7 +33,7 @@ exports.loginRegister = (req, res) => {
         }
         else {
             // User found
-            if (user.email == req.body.email && user.password == req.body.password) {
+            if (user.email == req.body.email && bcrypt.compareSync(req.body.password, user.password)) {
                 // Password correct
                 let userData = {
                     id: user._id,
