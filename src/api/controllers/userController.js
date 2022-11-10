@@ -10,7 +10,6 @@ exports.userRegister = (req, res) => {
     newUser.save((error, user) => {
         if (error) {
             res.status(401);
-            console.log(error);
             res.json({ message: "Reqûete invalide." });
         }
         else {
@@ -28,12 +27,13 @@ exports.loginRegister = (req, res) => {
         // If user not found
         if (error) {
             res.status(500);
-            console.log(error);
             res.json({ message: "Utilisateur non trouvé" });
         }
         else {
             // User found
             if (user.email == req.body.email && bcrypt.compareSync(req.body.password, user.password)) {
+                res.status(200);
+                
                 // Password correct
                 let userData = {
                     id: user._id,
@@ -49,7 +49,7 @@ exports.loginRegister = (req, res) => {
                     }
                     else {
                         res.status(200);
-                        res.json({token});
+                        res.json({token:token,user:user});
                     }
                 })
             }
@@ -62,4 +62,24 @@ exports.loginRegister = (req, res) => {
             }
         }
     })
+}
+
+exports.findAllUser = (req, res) => {
+    if(req.body.isAdmin === "true"){
+        User.find({}, (error, Users) => {
+            if (error) {
+                res.status(500);
+                console.log(error);
+                res.json({ message: "Erreur serveur." });
+            }
+            else {
+                res.status(200);
+                res.json(Users);
+            }
+        })
+    }else{
+        res.status(500);
+        res.json({ message: "Vous n'etes pas admin" });
+    
+    }
 }

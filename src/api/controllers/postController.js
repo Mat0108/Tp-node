@@ -2,36 +2,29 @@ const Post = require('../models/postModel');
 const textApiProvider = require("../providers/textApiProvider");
 
 exports.listAllPosts = (req, res) => {
-    if(req.body.IsConnected === "true"){
-        Post.find({}, (error, posts) => {
-            if (error) {
-                res.status(500);
-                console.log(error);
-                res.json({ message: "Erreur serveur." });
-            }
-            else {
-                res.status(200);
-                res.json(posts);
-            }
-        })
-    }else{
-        res.status(500);
-        res.json({ message: "Vous n'etes pas connecté" });
-   
-    }
+    Post.find({}, (error, posts) => {
+        if (error) {
+            res.status(500);
+            console.log(error);
+            res.json({ message: "Erreur serveur." });
+        }
+        else {
+            res.status(200);
+            res.json(posts);
+        }
+    })
 }
 
 exports.createAPost = (req, res) => {
-    let newPost = new Post(req.body);
+    let newPost = new Post(req.body.data.post);
 
-    if(req.body.isAdmin === "true"){
+    if(req.body.data.post.isAdmin == true){
        let randomTextPromise = textApiProvider.getRandomText();
     
         randomTextPromise.then((response) => {
             if(!newPost.content){
                 newPost.content = response;
             }
-
             newPost.save((error, post) => {
                 if (error) {
                     res.status(401);

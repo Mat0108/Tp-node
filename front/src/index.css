@@ -1,0 +1,288 @@
+body{
+    background-color:rgba(24, 29, 39, 0.932);
+}
+
+.cardcolor{
+  background-color: rgba(60, 63, 80, 0.63) ;
+}
+.textcolor{
+  color: white;
+}
+.nav{
+  background-color: grey;
+}
+
+.navtext{
+  color:white;
+}
+.CName{
+  width: 100px;
+  height: 40px;
+  border: black;
+  border-radius: 1em;
+}
+.CPrix{
+  width: 100px;
+  height: 40px;
+  border: black;
+  border-radius: 1em;
+}
+
+.Rfoam{
+  margin: 0 auto;
+  width: 800px;
+  height: 400px;
+  padding: 1em;
+  border: 1px solid #CCC;
+  font-size: 10px;
+  border-radius: 1em;
+  text-align: center;
+  margin: auto;
+}
+.Rinput{
+  background-color: rgb(175, 175, 175);
+  color : white;
+  font-size: 16px;
+  margin:auto;
+  width: 100%;
+  
+}
+.message{
+  width: 1000px;
+  margin: 0 auto;
+}
+.messageh1{
+  font-size: 16px;
+  text-align: center;
+}
+.Rlabel{
+  background-color: rgb(141, 137, 137);
+  color : white;
+  font-size: 16px;
+  margin:auto;
+  width:100px;
+  border-radius: 8px;
+  padding: 10px;
+}
+.Rbutton{
+  margin: 0 auto;
+  color : white;
+  font-size: 16px;
+  width: 150px;
+  background-color: rgb(56, 56, 56);
+}
+.Rlink{
+  margin: 0 auto;
+  color : white;
+  font-size: 16px;
+  text-align: center;
+  width: 150px;
+}
+
+.CH1{
+  color:white;
+}
+.Cfoam{
+  margin: 0 auto;
+  width: 800px;
+  height: 300px;
+  padding: 1em;
+  border: 1px solid #CCC;
+  font-size: 10px;
+  border-radius: 1em;
+  text-align: center;
+  margin: auto;
+}
+
+.Pcard{
+  margin: 0 200px 0 200px;
+}
+
+.Pimage{
+  mix-blend-mode: multiply;
+  align-items: center;
+}
+.Ptext{
+  color : white;
+}
+.Pprice{
+  color : white;
+  border: 1px solid #CCC;
+  width: 105px;
+  margin: auto;
+}
+
+.Pinput{
+  color : white;
+  background-color :rgba(100, 101, 107, 0.705) ;
+  width: 105px;
+  margin: auto;
+  
+}
+.Pinput:focus { 
+  color : white;
+  background-color : rgba(100, 101, 107, 0.705);
+}
+.Pbutton{
+  color : white;
+  width: 105px;
+  margin: auto;
+}
+
+.Pbutton:hover{
+  
+  background-color : rgba(100, 101, 107, 0.705);
+  color : white;
+
+}
+
+.Psgroup{
+  width : 100%;
+  margin: 0 0 0 0;
+}
+
+.Pscard{
+  width : 100/6%;
+  height: 200px;
+  border: 1px solid rgba(161, 153, 153, 0.651);
+}
+.Pstitre{
+  color : white;
+  text-align: center;
+}
+.Pslabel{
+  width: 100%;
+  color : white;
+  text-align: center;
+}
+.Psimage{
+  mix-blend-mode: multiply;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.Psprice{
+  color : white;
+  border: 1px solid rgba(204, 204, 204, 0.39);
+  width: 100%;
+  text-align: center;
+
+}
+.Cdropdownmenu{
+  background-color : rgb(33, 37, 41);
+}
+.Cdropdown{
+  background-color : rgb(33, 37, 41);
+  color : white;
+}
+.Cdropdown:hover .Cdropdownmenu{
+  display: block;
+}
+.Cdropdown:hover{
+  background-color : rgb(33, 37, 41);
+  color : white;
+}
+.Ch1{
+  color:white;
+  text-align: center;
+}
+
+
+.Clink{
+  color: white;
+  text-decoration: none;
+}
+.Clink:hover{
+  color:gray;
+}
+.Cimage{
+  
+  mix-blend-mode:multiply;
+  background-blend-mode:hard-light;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.Cborder{
+  border: 2px solid rgb(241, 241, 241);
+}
+.Ctable{
+  
+  background-color : rgb(33, 37, 41);
+}
+.Hdiv{
+  height: 100%;
+}
+.HCard{
+  background-color: white;
+  width : 100px;
+  height: 400px;
+  border: 1px solid rgba(161, 153, 153, 0.651);
+}
+.Htitre{
+  color : white;
+  text-align: center;
+}
+.Hlabel{
+  width: 100%;
+  color : white;
+  text-align: center;
+}
+.Himage{
+  mix-blend-mode: multiply;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.Hgroup{
+  height: 100%;
+}
+.Cinput{
+  background-color: rgb(175, 175, 175);
+  color : white;
+  font-size: 16px;
+  margin:auto;
+  width: 100%;
+  height: 180px;
+  vertical-align: top;
+  border-radius: 8px;
+
+}
+.Clabel{
+  background-color: rgb(141, 137, 137);
+  color : white;
+  font-size: 16px;
+  margin:auto;
+  width:100px;
+  border-radius: 8px;
+  padding: 10px;
+  offset-anchor: right 3em ;
+  height: 180px;
+}
+
+.Ctext{
+  color:white;
+}
+
+.Llabel{
+  background-color: rgb(141, 137, 137);
+  color : white;
+  font-size: 16px;
+  margin:auto;
+  width:100px;
+  border-radius: 8px;
+  padding: 10px;
+  offset-anchor: right 3em ;
+}
+
+.Llabel{
+  color:white;
+}
+
+.Lbutton{
+  margin: 0 auto;
+  color : white;
+  font-size: 16px;
+  width: 150px;
+  background-color: rgb(56, 56, 56);
+}
