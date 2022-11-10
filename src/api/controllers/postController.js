@@ -2,9 +2,7 @@ const Post = require('../models/postModel');
 const textApiProvider = require("../providers/textApiProvider");
 
 exports.listAllPosts = (req, res) => {
-    let IsConnected = new Boolean(req.body.IsConnected);
-    console.log("STATUS : ",IsConnected);
-    if(IsConnected == true){
+    if(req.body.IsConnected === "true"){
         Post.find({}, (error, posts) => {
             if (error) {
                 res.status(500);
@@ -26,27 +24,33 @@ exports.listAllPosts = (req, res) => {
 exports.createAPost = (req, res) => {
     let newPost = new Post(req.body);
 
-
-    let randomTextPromise = textApiProvider.getRandomText();
+    if(req.body.isAdmin === "true"){
+       let randomTextPromise = textApiProvider.getRandomText();
     
-    randomTextPromise.then((response) => {
-        if(!newPost.content){
-            newPost.content = response;
-        }
-
-        newPost.save((error, post) => {
-            if (error) {
-                res.status(401);
-                console.log(error);
-                res.json({ message: "Reqûete invalide." });
+        randomTextPromise.then((response) => {
+            if(!newPost.content){
+                newPost.content = response;
             }
-            else {
-                res.status(201);
-                res.json(post);
-            }
-        })
 
-    })
+            newPost.save((error, post) => {
+                if (error) {
+                    res.status(401);
+                    console.log(error);
+                    res.json({ message: "Reqûete invalide." });
+                }
+                else {
+                    res.status(201);
+                    res.json(post);
+                }
+            })
+
+        }) 
+    }else{
+        res.status(500);
+        res.json({ message: "Vous n'avez pas la permission de créer un message"});
+   
+    }
+    
 
 }
 
