@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   node:
-    container_name: project_node
+    container_name: node
     image: 'node:latest'
     working_dir: /home/node/app
     env_file:
@@ -9,22 +9,57 @@ services:
     command:
       - /bin/sh
       - '-c'
-      - 'npm install && npm start'
+      - 'npm install && npm run start   '
     ports:
       - '3000:3000'
     volumes:
       - './src:/home/node/app'
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    depends_on:
+      - mongo
     links:
       - mongo
     networks:
-      - my-network
+      - back
+
   mongo:
-    container_name: project_mongo
     image: mongo
+    container_name: mongo
+    environment:
+      MONGO_INITDB_DATABASE: tpnodedb
+      MONGO_INITDB_ROOT_USERNAME: tpnode
+      MONGO_INITDB_ROOT_PASSWORD: tpnodepass
+    restart: always
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./mongo-volume:/data/db
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    working_dir: /data/db
     ports:
-      - "27017:27017"
+      - '27017:27017'
     networks:
-      - my-network
+      - back
+
+  mongo-express:
+    image: mongo-express:latest
+    restart: always
+    container_name: mongo_express
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongo
+      ME_CONFIG_MONGODB_AUTH_DATABASE: tpnodedb
+      ME_CONFIG_MONGODB_AUTH_USERNAME: tpnode
+      ME_CONFIG_MONGODB_AUTH_PASSWORD: tpnodepass
+      ME_CONFIG_BASICAUTH_USERNAME: tpnode
+      ME_CONFIG_BASICAUTH_PASSWORD: tpnodepass
+    ports:
+      - '8081:8081'
+    depends_on:
+      - mongo
+    networks:
+      - back
+
 networks:
-  my-network:
+  back:
     driver: bridge

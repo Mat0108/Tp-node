@@ -10,7 +10,7 @@ exports.userRegister = (req, res) => {
     newUser.save((error, user) => {
         if (error) {
             res.status(401);
-            res.json({ message: "Reqûete invalide." });
+            res.json({ message: error });
         }
         else {
             res.status(201);

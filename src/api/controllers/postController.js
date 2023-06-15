@@ -16,34 +16,27 @@ exports.listAllPosts = (req, res) => {
 }
 
 exports.createAPost = (req, res) => {
-    let newPost = new Post(req.body.data.post);
-
-    if(req.body.data.post.isAdmin == true){
-       let randomTextPromise = textApiProvider.getRandomText();
     
-        randomTextPromise.then((response) => {
-            if(!newPost.content){
-                newPost.content = response;
+    let newPost = new Post(req.body);
+
+    let randomTextPromise = textApiProvider.getRandomText();
+
+    randomTextPromise.then((response) => {
+        if(!newPost.content){
+            newPost.content = response;
+        }
+        newPost.save((error, post) => {
+            if (error) {
+                res.status(401);
+                console.log(error);
+                res.json({ message: "Reqûete invalide." });
             }
-            newPost.save((error, post) => {
-                if (error) {
-                    res.status(401);
-                    console.log(error);
-                    res.json({ message: "Reqûete invalide." });
-                }
-                else {
-                    res.status(201);
-                    res.json(post);
-                }
-            })
-
-        }) 
-    }else{
-        res.status(500);
-        res.json({ message: "Vous n'avez pas la permission de créer un message"});
-   
-    }
-    
+            else {
+                res.status(201);
+                res.json(post);
+            }
+        })
+    })     
 
 }
 

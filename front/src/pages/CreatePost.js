@@ -8,12 +8,7 @@ import { CreatePostAPI } from '../services/posts';
 const CreatePost = () => {
     let navigate = useNavigate();
     const [userset, setUserset] = useRecoilState(UserState);
-    useEffect(()=>{
-        if(userset.isAdmin != true){
-            navigate("/");
-        }
-
-    },[userset]);
+    
 
     
     const [messages,setMessages] = useState([]);
@@ -27,7 +22,7 @@ const CreatePost = () => {
         event.preventDefault();
         post.isAdmin=true;
         console.log(post);
-        const res = await CreatePostAPI(post,userset.token);
+        const res = await CreatePostAPI(post);
             if (res.status === 201)
             {
                 navigate("/posts")

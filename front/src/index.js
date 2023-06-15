@@ -13,8 +13,8 @@ import CreatePost from './pages/CreatePost';
 import './index.css';
 import { RecoilRoot } from 'recoil';
 
-
-
+import * as sw from "./serviceWorkerRegistration"
+import ShowPost from './pages/ShowPost';
 const App =() => {
     return <>
         <RecoilRoot>{}
@@ -28,6 +28,7 @@ const App =() => {
                     <Route path="/login" element ={<Login />}></Route>
                     <Route path="/register" element={<Register />}></Route>
                     <Route path="/posts" element={<ShowPosts />}></Route>
+                    <Route path="/post/:postId" element={<ShowPost/>}></Route>
                     <Route path="/posts/create" element={<CreatePost />}></Route>
                 </Routes>
             </Router>
@@ -39,3 +40,4 @@ ReactDOM.render(
     <App />,
     document.getElementById('root')
 )
+sw.register();
